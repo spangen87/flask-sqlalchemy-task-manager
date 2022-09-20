@@ -19,9 +19,9 @@
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix teal-text darken-2"></i>
                 <textarea id="task_description" name="task_description" minlength="5" maxlength="200" type="text"
-                    class="materialize_textarea validate" required></textarea>
-                    {{ task.task_description }}
-                <label for="task_description">{{ task.task_description }}</label>
+                    class="materialize_textarea validate" required>{{ task.task_description }}</textarea>
+                    
+                <label for="task_description">Task Description</label>
             </div>
         </div>
         <!-- due_date -->
@@ -54,9 +54,13 @@
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix teal-text darken-2"></i>
                 <select name="category_id" id="category_id" class="validate" required>
-                    <option value="" disabled selected>Choose Category</option>
+                    <option value="" disabled>Choose Category</option>
                     {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.category_name }}</option>
+                        {% if category in categories %}
+                            <option value="{{ category.id }}" selected>{{ category.category_name }}</option>
+                        {% else %}
+                            <option value="{{ category.id }}">{{ category.category_name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>        
                 <label for="category_id">Category</label>
